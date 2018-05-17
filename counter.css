@@ -1,0 +1,120 @@
+html{
+background-image:url("counter.png");
+}
+
+body {
+
+        color:#262626;
+        
+}
+
+#wrapper {
+	margin: 0 auto;
+	width: 1200px;
+        color:white;
+}
+
+#timer {
+	text-align: center;
+	padding: 10px;
+	font-family: helvetica;
+	font-size: 25px;
+	background: #262626;
+        color:white;
+	opacity: 0.8;
+	display: none;
+}
+
+#paraContainer {
+        
+	display: none;
+	width: auto;
+	height: auto;
+	margin: 25px 10px;
+	font-family: helvetica;
+	font-size: 20px;
+	border: 2px solid white;
+	border-radius: 5px;
+	padding: 10px;
+	
+}
+
+#textArea {
+	display: none;
+	margin: 25px 15px;
+	width: auto;
+	height: auto;
+	font-family: helvetica;
+	font-size: 20px;
+	padding: 10px;
+	border: 2px solid white;
+	border-radius: 5px;
+}
+
+#startWindow{
+	
+  	height: 100%;
+  	width: 100%;
+  	top: 0;
+  	left: 0;
+	position: absolute;
+	font-family: helvetica;
+	padding-top: 100px;
+}
+
+#newTestWindow{
+	
+  	height: 100%;
+  	width: 100%;
+  	top: 0;
+  	left: 0;
+	position: absolute;
+	font-family: helvetica;
+	padding-top: 100px;
+	overflow: hidden;
+	display: none;
+}
+
+
+.modalBox {
+	margin: 0 auto;
+	width: 500px;
+	background: white;
+	text-align: center;
+	border: 2px solid whitesmoke;
+	border-radius: 10px;
+	padding: 20px;
+	line-height: 1.5;
+}
+
+.modalBox h1{
+	font-size: 35px;
+	text-align: center;
+	font-weight: 100;
+}
+
+.modalBox p {
+	font-size: 18px;
+	text-align: center;
+	font-weight: 100;
+	padding: 20px 0;
+}
+
+.modalBox button {
+	outline: none;
+	padding: 15px;
+	cursor: pointer;
+	font-size: 18px;
+	border-radius: 5px;
+	background: #262626;
+	border: 2px solid transparent;
+	color: #fff;
+	font-weight: 100;
+}
+
+.modalBox button:hover {
+	background: #fff;
+	border: 2px solid #262626;
+	color: white;
+	transition: 0.2s;
+}
