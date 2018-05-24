@@ -1,45 +1,78 @@
 var timer = document.getElementById("timer");
 var i = 60;
 var testPara = document.getElementById("testPara");
-var textArea = document.getElementById("textArea");
+var textArea=document.getElementById("textArea");
 var startWindow = document.getElementById("startWindow");
 var startButton = document.getElementById("startButton");
 var newTestWindow = document.getElementById("newTestWindow");
 var newTestButton = document.getElementById("newTestButton");
-var score = 0;
+var wrapper=document.getElementById("wrapper");
 
 
 
 
+function genPass(){
+    document.getElementById("paraContainer").style.display = "inline-block";
+	document.getElementById("textArea").style.display = "inline-block";
+	var passages = [passage1, passage2, passage3, passage4, passage5];
+	testPara.innerHTML = passages[Math.floor(Math.random()*10/2)];
 
-var calculateScore = function() {
-        
-	var x = textArea.value;
-	var y = x.split(" ");
-        var wordCount=y.length;
-        var testWords = testPara.innerHTML.split(" ");
-	console.log(testWords);
-        return wordCount;
-};
+}
 
 
-var genPass = function(){
+
+var calculateScore = function(){
+	var x=textArea.value;
+	var y=x.split(" ");
+	var wordCount=y.length;
+	return wordCount;
+}
+
+
+
+
+textArea.addEventListener("input",function check(){
 	
-	paraContainer.style.display = "inline-block";
-	textArea.style.display = "inline-block";
-        var passages = [passage1, passage2, passage3, passage4, passage5];
+   
+	var writtenWords= document.getElementById("textArea").value;
+	var y=testPara.textContent;
+	var	equPara=y.substr(0,(writtenWords.length));
+
+	if(equPara.localeCompare(writtenWords)==0)
+	{
+		wrapper.setAttribute("style","background-color:#008000");
+		
+	}
+	else
+	{
+		wrapper.setAttribute("style","background-color:#cc0000");
+		textArea.disabled=true;
+		window.alert("Enter backspace to continue typing");
+		document.addEventListener("keydown",function KeyCheck()
+     {
+           var keyID = event.keyCode;
+		   if(keyID==8)
+		    {
+				textArea.disabled=false;
+			}
+			
           
-	testPara.innerHTML=passages[Math.floor(Math.random()*10/2)];
+	 })
+	}
+		
+   
 
-};
+});
 
-var displayTime = function () {
-
+    var displayTime = function () {
+		
 	var getTime = setInterval(function() {
 		i--;
 		timer.innerHTML = "Time Remaining: " + i + "s"; 
 
 		console.log(i);
+		
+		
 
 		if(i == 0){
 
@@ -51,13 +84,16 @@ var displayTime = function () {
 			timer.remove();
 
 			document.body.appendChild(newTestWindow);
-			document.getElementById("finalScore").innerHTML = "Your speed: " + calculateScore() + " wpm";
+			document.getElementById("finalScore").innerHTML = "Your speed: " + calculateScore() + " words per minute.";
 			newTestWindow.style.display = "block";
 		} 
 	}, 1000);
 
 	textArea.removeEventListener("keydown", displayTime);
 };
+
+
+
 
 var test = function() {
 	
@@ -67,10 +103,12 @@ var test = function() {
 	timer.style.display = "block";
 
 	textArea.addEventListener("keydown", displayTime);
-
-	genPass();
+    genPass();
 
 };
+
+
+
 
 startButton.addEventListener("click", test);
 
@@ -90,7 +128,7 @@ var passage2 = "Supervised machine learning algorithms can apply what has been l
 
 
 
-var passage3 = "Semi-supervised machine learning algorithms fall somewhere in between supervised and unsupervised learning, since they use both labeled and unlabeled data for training , typically a small amount of labeled data and a large amount of unlabeled data. The systems that use this method are able to considerably improve learning accuracy. Usually, semi-supervised learning is chosen when the acquired labeled data requires skilled and relevant resources in order to train it or learn from it. Otherwise, acquiringunlabeled data generally doesn't require additional resources.Reinforcement machine learning algorithms is a learning method that interacts with its environment by producing actions and discovers errors or rewards.Trial and error search and delayed reward are the most relevant characteristics of reinforcement learning.This method allows machines and software agents to automatically determine the ideal behavior within a specific context in order to maximize its performance.<br><br>Simple reward feedback is required for the agent to learn which action is best; this is known as the reinforcement signal.";
+var passage3 = "Semi-supervised machine learning algorithms fall somewhere in between supervised and unsupervised learning, since they use both labeled and unlabeled data for training , typically a small amount of labeled data and a large amount of unlabeled data. The systems that use this method are able to considerably improve learning accuracy. Usually, semi-supervised learning is chosen when the acquired labeled data requires skilled and relevant resources in order to train it or learn from it. Otherwise, acquiringunlabeled data generally doesn't require additional resources.Reinforcement machine learning algorithms is a learning method that interacts with its environment by producing actions and discovers errors or rewards.Trial and error search and delayed reward are the most relevant characteristics of reinforcement learning.This method allows machines and software agents to automatically determine the ideal behavior within a specific context in order to maximize its performance.Simple reward feedback is required for the agent to learn which action is best; this is known as the reinforcement signal.";
 
 
 
@@ -102,7 +140,7 @@ var passage4 = "Machine learning and data mining often employ the same methods a
 
 
 
-var passage5 = " Datum is represented as a linear combination of basis functions, and the coefficients are assumed to be sparse.Let x be a d-dimensional datum, D be a d by n matrix, where each column of D represents a basis function.r is the coefficient to represent x using D. Mathematically, sparse dictionary learning means solving  where r is sparse.Generally speaking, n is assumed to be larger than d to allow the freedom for a sparse representation.Learning a dictionary along with sparse representations is strongly NP-hard and also difficult to solve approximately.A popular heuristic method for sparse dictionary learning is K-SVD.Sparse dictionary learning has been applied in several contexts.In classification, the problem is to determine which classes a previously unseen datum belongs to."; 
+var passage5 = "Datum is represented as a linear combination of basis functions, and the coefficients are assumed to be sparse.Let x be a d-dimensional datum, D be a d by n matrix, where each column of D represents a basis function.r is the coefficient to represent x using D. Mathematically, sparse dictionary learning means solving  where r is sparse.Generally speaking, n is assumed to be larger than d to allow the freedom for a sparse representation.Learning a dictionary along with sparse representations is strongly NP-hard and also difficult to solve approximately.A popular heuristic method for sparse dictionary learning is K-SVD.Sparse dictionary learning has been applied in several contexts.In classification, the problem is to determine which classes a previously unseen datum belongs to."; 
 
 
 
